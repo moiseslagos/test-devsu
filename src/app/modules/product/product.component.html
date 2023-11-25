@@ -1,0 +1,46 @@
+
+<div class="wrapper">
+  <div class="mb-1 pl-1 pr-1">
+    <div class="flex justify-between">
+      <app-filter-input (textoActualizado)="handleFilterChange($event)"></app-filter-input>
+      <app-button (buttonClick)="handleNewProduct()">Agregar</app-button>
+    </div>
+  </div>
+  <app-card classes="p-1" [loading]="loading">
+    <div class="overflow-auto">
+      <table class="table-auto w-full whitespace-no-wrap table-primary">
+        <thead>
+          <tr>
+            <th class="p-1 pt-0 text-sm">Logo</th>
+            <th class="p-1 pt-0 text-sm">Nombre del producto</th>
+            <th class="p-1 pt-0 text-sm">Descripción</th>
+            <th class="p-1 pt-0 text-sm">Fecha de liberación</th>
+            <th class="p-1 pt-0 text-sm">Fecha de reestructuración</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of productsFiltered; track product.id) {
+            <tr>
+              <td class="p-1 pt-0 text-sm">
+                <div>
+                  <img src="{{product.logo}}" alt="{{product.name}}" width="85">
+                </div>
+              </td>
+              <td class="p-1 pt-0 text-sm">{{product.name}}</td>
+              <td class="p-1 pt-0 text-sm">{{product.description}}</td>
+              <td class="p-1 pt-0 text-sm">{{product.date_release | date:'dd/MM/yyyy'}}</td>
+              <td class="p-1 pt-0 text-sm">{{product.date_revision | date: 'dd/MM/yyyy'}}</td>
+              <td>
+                <app-dropdown-menu [options]="dropdownOptions" (optionSelected)="onOptionSelected($event, product)"></app-dropdown-menu>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <!-- Pagination -->
+    <app-pagination (pageSizeChange)="onPageSizeChange($event)"></app-pagination>
+  </app-card>
+</div>
+

@@ -1,0 +1,65 @@
+<div class="p-1 container">
+  <div class="card-primary">
+    <div class="flex justify-center card-header">
+      <h2>Formulario de registro</h2>
+    </div>
+    <div class="p-1 md-p-2">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="grid col-1 md-col-2 gap-1 pb-1 md-gap-2">
+          <app-input label="ID" controlName="id" [form]="productForm" type="text">
+            @if (f['id'].errors?.['required']) {
+              El ID es requerido
+            }
+            @if (id?.pending || loadingValidationId) {
+              Verificando la disponibilidad del ID
+            }
+            @if (f['id'].errors?.['idExists'] && !id?.pending && !loadingValidationId) {
+              El ID ya existe
+            }
+          </app-input>
+          <app-input label="Nombre" controlName="name" [form]="productForm" type="text">
+            @if (f['name'].errors?.['required']) {
+              El Nombre es requerido
+            }
+            @if (f['name'].errors?.['minlength']) {
+              Mínimo 3 caracteres
+            }
+            @if (f['name'].errors?.['maxLength']) {
+              Máximo 100 caracteres
+            }
+          </app-input>
+          <app-input label="Descripción" controlName="description" [form]="productForm" type="text">
+            @if (f['description'].errors?.['required']) {
+              La descripción es requerido
+            }
+            @if (f['description'].errors?.['minlength']) {
+              Mínimo 10 caracteres
+            }
+            @if (f['description'].errors?.['maxLength']) {
+              Máximo 200 caracteres
+            }
+          </app-input>
+          <app-input label="Logo" controlName="logo" [form]="productForm" type="text">
+            El Logo es requerido
+          </app-input>
+          <app-input label="Fecha liberación" controlName="date_release" [form]="productForm" type="date" [minDate]="minDate">
+            La Fecha liberación es requerida
+          </app-input>
+          <app-input label="Fecha revisión" controlName="date_revision" [form]="productForm" type="date" [minDate]="minDate">
+            La Fecha revisión es requerida
+          </app-input>
+        </div>
+        <div class="pt-1">
+          <div class="flex justify-center gap-2 mb-1">
+            <app-button variant="secondary" (buttonClick)="handleRestart()">
+              Reiniciar
+            </app-button>
+            <app-button variant="primary" type="submit" [loading]="loadingForm">
+              {{isUpdate ? 'Actualizar' : 'Enviar'}}
+            </app-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

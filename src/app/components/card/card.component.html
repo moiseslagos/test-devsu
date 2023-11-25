@@ -1,0 +1,8 @@
+<div class="card-primary" [ngClass]="classes">
+  <ng-container *ngIf="loading">
+    <div class="loading flex align-center gap-1 p-1">
+      <app-loading size="md"></app-loading> cargando..
+    </div>
+  </ng-container>
+  <ng-content ></ng-content>  
+</div>  

@@ -1,0 +1,9 @@
+<div class="modal" [ngClass]="{'show': showModal}">
+  <div class="modal-content">
+    <div class="pb-1 pt-1">{{ modalContent }}</div>
+    <div class="flex justify-center gap-2">
+      <app-button variant="secondary" (buttonClick)="closeModal()">Cancelar</app-button>
+      <app-button variant="primary" (buttonClick)="onAccept()">Confirmar</app-button>
+    </div>
+  </div>
+</div>

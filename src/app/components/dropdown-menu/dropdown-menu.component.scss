@@ -1,0 +1,36 @@
+*{
+  position: relative;
+}
+.ellipsis {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.dots {
+  color: #10255c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
+  top: 20px;
+  right:  0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0;
+  z-index: 10;
+}
+li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}

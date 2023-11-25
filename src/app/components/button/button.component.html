@@ -1,0 +1,16 @@
+<button 
+  [type]="type"
+  [disabled]="disabled || loading"
+  (click)="onClick()"
+  [ngClass]="{
+    'button-primary': variant === 'primary',
+    'button-secondary': variant === 'secondary',
+  }"
+>
+  <ng-container *ngIf="loading">
+    <div class="loading">
+      <app-loading size="md"></app-loading>
+    </div>
+  </ng-container>
+  <ng-content></ng-content>
+</button>
